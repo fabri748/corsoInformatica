@@ -1,6 +1,7 @@
 <?php
-require_once "Person.php";
-require_once "DigitalUser.php";
+namespace classes;
+//require_once "Person.php";
+//require_once "DigitalUser.php";
 
 class Student implements Person{
     
@@ -8,20 +9,22 @@ class Student implements Person{
     
     private $name;
     private $age;
-    private $courses;
+    private $courses=[];
     
     public function getCourses(){
         return $this->courses;
     }
-    public function addCourse(Course $s){
-       $this->courses = $s;   
+    public function addCourse(Course $course){
+       $this->courses[] = $course;   
     }
-    public function resetCourses(){    
+    public function resetCourses(){ 
+        $this->courses=[];
     }
     public function __construct($name, $age, $email, $courses=[]){
         $this->name= $name;         
         $this->age= $age;         
         $this->email= $email;
+        $this->courses=$courses;
     }
     public function getName(){
         return $this->name;
@@ -36,10 +39,11 @@ class Student implements Person{
         $this->age = $age;
     }
     public function __toString(){
-            $output = "Name: ". $this->name ."<br>";
-            $output .= "Age: ". $this->age ."<br>";
-            $output .= "Email: ". $this->email ."<br>";
-            return $output;
-        }
+        $courses ="";
+            foreach ($this->courses as$course){
+                $courses .= "($course),";
+            }
+            return "Name: ".$this->name."</br>Age: ".$this->age."</br>Course: [$courses]"."</br>";
+    }
 }
 
