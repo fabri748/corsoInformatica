@@ -24,6 +24,6 @@ $allievo = new Student("Giuseppe Rossi","34", "prova@prova.com");
 $allievo->addCourse(new Course("Astronomy",66));
  echo $allievo;       
 
-$docente = new Teacher("Mario Rossi","99", "prova@prova.com", "Apple");
+$docente = new Teacher("Mario Rossi","99", "prova@prova.com", "Apple", "Cambridge");
 $docente ->setCourse(new Course("Physics",98));
 echo $docente;
