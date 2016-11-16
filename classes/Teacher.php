@@ -24,16 +24,17 @@ class Teacher extends Worker {
        $this->course = $course;   
     }
     public function getSchool(){
-        return $this->course;
+        return $this->school;
     }
     public function setSchool(School $school){
-       $this->course = $school;   
+       $this->school = $school;   
     }
-    public function __construct($name, $age, $email, $company, $course=null){
+    public function __construct($name, $age, $email, $company, $school, $course=null){
         $this->name= $name;         
         $this->age= $age;         
         $this->email= $email;
         $this->company= $company;
+        $this->school= $school;
         $this->course=$course;
         
     }
@@ -41,9 +42,23 @@ class Teacher extends Worker {
             $output = "</br>Name teacher: ". $this->name ."<br>";
             $output .= "Age teacher: ". $this->age ."<br>";
             $output .= "Email teacher: ". $this->email."</br>";
-            $output .= "Company: ". $this->company;
+            $output .= "Company: ". $this->company."</br>";
+            $output .= "School: ". $this->school."</br>";
             $output .= "</br>Course: ". $this->course;
             return $output;
         }
+        
+    function getStudents() {
+        $st = [];
+        
+        if($school = $this->getSchool()){
+            foreach ($school->getStudents() as $student){
+                if(in_array($this->course, $student->getCourses())){
+                    $st[] = $student;
+                }
+            }
+        }
+        return $st;
+    }
 }
 
