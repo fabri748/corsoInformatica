@@ -36,7 +36,7 @@ $school->addStudent($allievo2);
 $docente = new Teacher("Mario Rossi","99", "prova@prova.com", "Apple", $school);
 $docente ->setCourse($phy);
 echo $docente;
-echo "<br>i suo studenti sono:<br>";
+echo "<br>i suoi studenti sono:<br>";
 
 foreach($docente->getStudents() as $stud){
     echo $stud.", ";
